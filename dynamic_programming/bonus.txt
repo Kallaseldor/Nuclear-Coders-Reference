@@ -1,0 +1,54 @@
+Non-Trivial DP Tricks and Techniques
+> DP + Bitmasks								453B CF
+> Do you really need to visit all states?	505C CF
+> Change the object to DP 					559C CF
+> Open and Close Interval Trick				626F CF
+> "Connected Component" DP 					JOI 2016 - Skyscraper / 704B CF
+> x2, +1 trick 								Perfect Permutations (Hackerearth)
+
+
+====================================================
+Do you really need to visit all states?
+
+Sometimes you don't need to visit all of the dp's
+states. In such cases, if you don't have enough
+memory to declare a static dp, you should go for
+a map as the dp instead of a static array. Adds a log
+to the time complexity though.
+
+
+====================================================
+Change the object to dp
+
+Suppose the following problem:
+There is a board of size N x M (1 <= N, M <= 1e5)
+and K (1 <= K <= 2e3) blocked positions. Calculate 
+the amount of ways to go from (1, 1) to (N, M)
+without going through any of the blocked positions.
+
+The obvious solution would be to make a dp[i][j] = 
+amount of ways to reach (N, M) starting from (i, j).
+However, this takes too much time. We have to make
+use of the fact that there are only 2e3 blocked
+positions. Therefore, order blocked positions by X
+coordinate. In case of ties, order by Y position.
+Then, define dp[i] = amount of ways to go from
+(1, 1) to the i'th blocked position. To calculate
+such DP, we have to use some combinatorics and
+remove the amount of ways to get from the j'th
+blocked position to the i'th blocked position, if
+Xj < Xi and Yj < Yi.
+
+
+====================================================
+Open and Close Interval Trick
+
+Suppose the following problem:
+You are given an array of N (1 <= N <= 200) people.
+The imbalance of a group is the difference between
+the maximum and minimum value of such group. You
+have to find out the amount of ways to divide all N
+people into groups such that the sum of all
+imbalances of groups doesn't exceed K (1 <= K <= 1000)
+
+Firstly, order your array.

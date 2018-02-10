@@ -1,6 +1,8 @@
 // Convex Hull Trick (DP optimization)
-// Time Complexity: O((N + Q) log N)
+// Time Complexity: O((N + Q log N)
 // Memo Complexity: O(N)
+
+// OBS: Lines have to be inserted in order
 
 const int MAXN = 112345;
 const long long LINF = 0x3F3F3F3F3F3F3F3FLL;

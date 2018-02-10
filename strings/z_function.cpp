@@ -10,22 +10,12 @@ int z[MAXN];
 void zfunction (string s) {
 	int n = s.size();
 
-	int l = 0, r = 0;
+	int L = 0, R = 0;
 	for (int i = 1; i < n; ++i) {
-		if (i > r) {
-			l = r = i;
-			while (r < n && s[r - l] == s[r]) ++r;
-			z[i] = r - l; --r;
-		} else {
-			int k = i - l;
-			if (z[k] < r - l + 1) z[i] = z[k];
-			else {
-				l = i;
-				while (r < n && s[r - l] == s[r]) ++r;
-				z[i] = r - l; ++r;
-			}
-		}
+		if (i > R)
+			L = R = i;
+		z[i] = min (z[i - L], R - i);
+		while (i + z[i] < n && s[i + z[i]] == s[z[i]])
+			++z[i], L = i, R = i + z[i];
 	}
-
-
 }
