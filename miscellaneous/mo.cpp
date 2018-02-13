@@ -17,12 +17,13 @@ struct query {
 };
 
 const int MAXN = 212345;
+const int MAXV = 1123456;
 
 pair<int, int> ans[MAXN];	// First: Frequency of most common element
-							// Second: Most common element
+				// Second: Most common element
 
-int freq[MAXN];
-int v[MAXN];				// Original array
+int freq[MAXV];
+int v[MAXN];			// Original array
 vector<query> q;
 
 void mo() {
