@@ -18,7 +18,7 @@ to the time complexity though.
 
 
 ====================================================
-Change the object to dp
+Change the object to DP
 
 Suppose the following problem:
 There is a board of size N x M (1 <= N, M <= 1e5)
@@ -51,4 +51,13 @@ have to find out the amount of ways to divide all N
 people into groups such that the sum of all
 imbalances of groups doesn't exceed K (1 <= K <= 1000)
 
-Firstly, order your array.
+Firstly, order your array. In this way, if dp[i][j] =
+amount of ways to finish grouping up i elements if
+there are already j open groups, all you have to do to
+transition to the next state is sum (v[i + 1] - v[i])
+* j, because the total K difference out of all of the
+open groups will grow by at least v[i + 1] - v[i].
+
+
+====================================================
+"Connected Component" DP

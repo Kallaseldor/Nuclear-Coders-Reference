@@ -1,0 +1,17 @@
+Minimum Path Cover:
+
+Given a directed graph, find the minimum number of
+disjointed paths needed to cover the whole graph
+
+Solution:
+Clone the graph's vertices and separate them into
+left and right and add edge LU -> RV ifft he edge
+U -> V is present on the original graph. The answer
+to the problem is ( |V| - Max Matching )
+
+Complexity:
+Using Kuhn's algorithm		O( |V| * |E| )
+Using Dinic's algorithm		O( sqrt(|V|) * |E| )
+
+====================================================
+

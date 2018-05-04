@@ -1,68 +1,108 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TVector {
-	long long x, y;
+struct Point {
+	double x, y;
 
-	TVector () {}
-	TVector (long long _x, long long _y) {
+	Point () {}
+	Point (double _x, double _y) {
 		x = _x; y = _y;
 	}
 
-	TVector operator+ (const TVector p) const {
-		return TVector (x + p.x, y + p.y);
+	Point operator+ (const Point & other) const {
+		return Point (x + other.x, y + other.y);
 	}
 
-	TVector operator- (const TVector p) const {
-		return TVector (x - p.x, y - p.y);
+	Point operator- (const Point & other) const {
+		return Point (x - other.x, y - other.y);
 	}
 
-	long long operator^ (const TVector p) const {
-		return x * p.y - y * p.x;
+	double operator^ (const Point & other) const {
+		return x * other.y - y * other.x;
 	}
 
-	long long operator* (const TVector p) const {
-		return x * p.x + y * p.y;
+	double operator* (const Point & other) const {
+		return x * other.x + y * other.y;
 	}
 
-	long long operator~ () const {
+	double operator~ () const {
 		return x * x + y * y;
 	}
 
-	long long distanceToSegment2 (const TVector s1, const TVector s2) const {
-		TVector c = *this;
-		if ( 	((s2 - s1) * (c - s1)) <= 0 ||
-				((s1 - s2) * (c - s2)) <= 0) {
+	double distanceToSegment2 (const Point s1, const Point s2) const {
+		Point c = *this;
+		if ( 	((s2 - s1) * (c - s1)) <= 0.0 ||
+				((s1 - s2) * (c - s2)) <= 0.0) {
 			return min(~(s1 - c), ~(s2 - c));
 		} else {
-			long long area = (s2 - s1) ^ (c - s1);
+			double area = (s2 - s1) ^ (c - s1);
 			return (area * area) / (~(s2 - s1));
 		}
 	}
 };
 
-struct TCircle {
-	TVector p;
-	long long r;
+struct Line {
+	double a, b, c;
 
-	TCircle () {}
-	TCircle (TVector _o, long long _r) {
+	Line () {}
+	Line (double _a, double _b, double _c) {
+		a = _a; b = _b; c = _c;
+	}
+
+	bool parallel (const Line & other) {
+		return (a * other.b == other.a * b);
+	}
+
+	Point intersect (const Line & other) {
+		if (this -> parallel (other) ) return Point (-HUGE_VAL, -HUGE_VAL);
+		else {
+			double det = a * other.b - other.a * b;
+			double x = (b * other.c - other.b * c) / det;
+			double y = (c * other.a - other.c * a) / det;
+			return Point (x, y);
+		}
+	}
+
+	Line perpendicular (Point p) {
+		return Line (-b, a, b * point.x - a * point.y);
+	}
+};
+
+struct Circle {
+	Point o;
+	double r;
+
+	Circle () {}
+	Circle (Point _o, double _r) {
 		o = _o; r = _r;
 	}
 
-};
+	Circle (Point a, Point b, Point c) {
+		Line ab = Line (a, b);
+		Line bc = Line (b, c);
+		Point mAB = Point ((a.x + b.x) * 0.5, (a.y + b.y) * 0.5);
+		Point mBC = Point ((b.x + c.x) * 0.5, (b.y + c.y) * 0.5);
+		ab = ab.perpendicular (mAB);
+		bc = bc.perpendicular (mBC);
 
-struct TLine {
-	long long a, b, c;
+		if (ab.parallel (bc)) {
+			o = Point (-HUGE_VAL, -HUGE_VAL);
+			r = -1.0;
+		} else {
+			o = ab.intersect (bc);
+			r = ~(o - a);
+		}
 
-	TLine () {}
-	TLine (long long _a, long long _b, long long _c) {
-		a = _a; b = _b; c = _c;
 	}
-}
 
+	double getIntersectionArea (Circle c) {
+		double d = ~(o - c.o);
+		if (d >= r + c.r) return 0.0;
+		else if (c.r >= d + r) return pi * r * r;
+		else if (r >= d + c.r) return pi * c.r * c.r;
+		else {
+			// Acho que seria bom terminar isso logo
+		}
+	}
 
-int main() {
-
-	return 0;
-}
+};

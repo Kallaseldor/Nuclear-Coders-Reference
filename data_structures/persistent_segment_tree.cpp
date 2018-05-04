@@ -38,3 +38,6 @@ int query(int no, int l, int r, int i, int j) {
 	int mid = (l + r) >> 1;
 	return query(L[no], l, mid, i, j) + query(R[no], mid + 1, r, i, j);
 }
+
+// Nice Problems:
+// Codechef XRQRS

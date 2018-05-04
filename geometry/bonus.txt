@@ -1,0 +1,19 @@
+
+
+====================================================
+Diamonds to Square transformation
+
+Given a set of diamonds with radius R on the plane,
+you are to process connectivity queries between
+those diamonds.
+
+The set {(a, b): |a - x| + |b - y| <= R} forms a
+diamond with center (x, y). By rotating it by 45
+degrees, we can turn it into a square. The transform
+
+X' = X + Y
+Y' = X - Y
+
+makes such rotation with additional stretching.
+Squares with centers (X1, Y1) and (X2, Y2) wil overlap
+iff max (|X1 - X2|, |Y1 - Y2|) <= 2R.

@@ -16,14 +16,13 @@ struct query {
 	}
 };
 
-const int MAXN = 212345;	// Array size
-const int MAXV = 1123456;	// Biggest value in the array
+const int MAXN = 212345;
 
 pair<int, int> ans[MAXN];	// First: Frequency of most common element
-				// Second: Most common element
+							// Second: Most common element
 
-int freq[MAXV];
-int v[MAXN];			// Original array
+int freq[MAXN];
+int v[MAXN];				// Original array
 vector<query> q;
 
 void mo() {
