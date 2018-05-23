@@ -1,3 +1,7 @@
+// Fuzzy Search - CF 528D
+// Finding position where amount of matches is maximal
+// O (N * log N * A) where A is alphabet size
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -126,22 +130,57 @@ public:
 	}
 };
 
+int match[212345];
+
 int main () {
+	string cc = "ATCG";
 
-	vector <int> a = vector <int> (10);
+	int n, m, k;
+	cin >> n >> m >> k;		// For no "errors", set K = 0
 
-	for (int i = 0; i < 10; ++i)
-		a[i] = (i + 1) * (i + 1);
-
-	vector <int> b = FFT :: convolution (a, a);
+	string s, t;
 	
-	/* 1 8 34 104 259 560 1092 1968 3333
-	5368 8052 11120 14259 17104 19234 20168 19361 16200 10000*/
+	cin >> s >> t;
+	
+	for (int c = 0; c < cc.size(); ++c) {
+		char ch = cc[c];
+		vector <int> ss = vector <int> (n + 1, 0);
+		vector <int> tt = vector <int> (m + 1, 0);
 
-	for (int i = 0; i < b.size(); ++i)
-		cout << b[i] << " ";
-	cout << endl;
+		for (int i = 0; i < n; ++i) {
+			if (s[i] == ch) {
+				ss[max (0, i - k)]++;
+				ss[min (n, i + k + 1)]--;
+			}
+		}
 
+		for (int i = 1; i <= n; ++i)
+			ss[i] += ss[i - 1];
+
+		for (int i = 0; i < n; ++i)
+			if (ss[i]) ss[i] = 1;
+
+		int q = 0;
+		for (int i = 0; i < m; ++i) {
+			if (t[i] == ch) {
+				tt[m - i - 1] = 1;
+				++q;
+			}
+		}
+
+		vector <int> tmp = FFT :: convolution (ss, tt);
+
+		for (int i = 0; i < n - m + 1; ++i) {
+			match[i] += tmp[i + m - 1];
+		}
+	}
+
+	int ans = 0;
+	for (int i = 0; i < n - m + 1; ++i) {
+		if (match[i] == m) ++ans;
+	}
+
+	cout << ans << endl;
 
 
 	return 0;

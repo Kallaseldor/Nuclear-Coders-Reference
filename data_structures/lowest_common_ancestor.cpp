@@ -23,6 +23,8 @@ void build (int n) {
 				memo[i][j] = memo[i][j - 1];
 			else
 				memo[i][j] = memo[i + (1 << (j - 1))][j - 1];
+
+
 }
 
 int query (int l, int r) {

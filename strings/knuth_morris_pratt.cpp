@@ -1,4 +1,3 @@
-
 const int MAXN = 112345;
 
 int b[MAXN];
