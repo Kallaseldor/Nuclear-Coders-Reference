@@ -5,7 +5,7 @@
 // Special Cases:
 // Unit Capacities: O (min (V ^ 2/3, E ^ 1/2) * E)
 // Bipartite Matching: O (sqrt (V) * E)
-#define MAXV 1000
+const int MAXV = 512;
 
 struct Edge {
 	int to, cap;

@@ -4,7 +4,7 @@
 
 const int MAXN = 112345;
 
-int cnt;
+int cnt;	// Amount of connected components
 int id[MAXN], sz[MAXN];
 
 void setup (int n) {

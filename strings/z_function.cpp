@@ -1,5 +1,5 @@
 // Z-Function
-// Time Complexity: O(|str|)
+// Time Complexity: O(|S|)
 
 // Acho que nao ta funcionando
 
@@ -20,7 +20,7 @@ void zfunction (const string & str) {
 }
 
 
-void zfunction (const string & str) {
+void zfunction (const string & s) {
 	int n = str.size();
 
 	int L = 0, R = 0;
