@@ -17,3 +17,10 @@ Y' = X - Y
 makes such rotation with additional stretching.
 Squares with centers (X1, Y1) and (X2, Y2) wil overlap
 iff max (|X1 - X2|, |Y1 - Y2|) <= 2R.
+
+Dist ((X1', Y1'), (X2', Y2')) = max (delta X', delta Y')
+
+To calculate the intersection of many diamonds we can
+fix point (X2, Y2) and find the maximum and minimum
+values of X1 + Y1 and X1 - Y1 (which are independant
+of (X2, Y2)) and try all possible points (X2, Y2).

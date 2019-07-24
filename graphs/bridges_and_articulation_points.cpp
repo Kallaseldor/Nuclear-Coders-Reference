@@ -44,10 +44,10 @@ void dfs (int x, int p) {
 
 	for (int i = 0; i < g[x].size(); ++i) {
 		Edge & e = edges[g[x][i]];
-		int y = e.get();
+		int y = e.get(x);
 
 		if (!vis[y]) {
-			dfs (y);
+			dfs (y, x);
 			nf++;
 			low[x] = min (low[x], low[y]);
 			

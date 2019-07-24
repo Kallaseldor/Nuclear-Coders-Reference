@@ -48,7 +48,7 @@ void update (int nd, int l, int r, int pos, int val) {
 
 int query (int nd, int l, int r, int ll, int rr) {
 	if (rr < l || r < ll) return 0;
-	if (l <= ll && rr <= r) return st[nd];
+	if (ll <= l && r <= rr) return st[nd];
 
 	int mid = (l + r) >> 1;
 	int nxt = nd << 1;

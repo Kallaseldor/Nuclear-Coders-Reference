@@ -49,6 +49,12 @@ struct Line {
 		a = _a; b = _b; c = _c;
 	}
 
+	Line (Point p, Point q) {
+		a = p.y - q.y;
+		b = q.x - p.x;
+		c = p.x * q.y - q.x * p.y;
+	}
+
 	bool parallel (const Line & other) {
 		return (a * other.b == other.a * b);
 	}
@@ -64,7 +70,7 @@ struct Line {
 	}
 
 	Line perpendicular (Point p) {
-		return Line (-b, a, b * point.x - a * point.y);
+		return Line (-b, a, b * p.x - a * p.y);
 	}
 };
 
@@ -101,7 +107,7 @@ struct Circle {
 		else if (c.r >= d + r) return pi * r * r;
 		else if (r >= d + c.r) return pi * c.r * c.r;
 		else {
-			// Acho que seria bom terminar isso logo
+			// Algum dia eu terimno essa parte
 		}
 	}
 
