@@ -1,6 +1,4 @@
 
-// UNTESTED (internet caiu na hora que eu fui testar... e.e)
-
 // Segment Tree
 // Build:	O(n)
 // Query:	O(log n)
